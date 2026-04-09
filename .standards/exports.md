@@ -11,6 +11,22 @@ Use exports to expose stable function-like APIs between resources.
 - Exports can be registered on both server and client.
 - Use exports from the same side context (server->server, client->client).
 
+## Export Vs Event
+
+Use an export when:
+- You need a return value.
+- It behaves like a function call.
+- Logic is synchronous.
+
+Use an event when:
+- You signal that something happened.
+- You need Client <-> Server communication.
+- You want loose coupling.
+
+Rule:
+- Function-like flow -> export
+- Action/event flow -> event
+
 ## Why Code-Based Exports
 
 - Easier to read and maintain next to implementation.

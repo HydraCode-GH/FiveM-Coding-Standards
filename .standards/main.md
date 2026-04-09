@@ -6,7 +6,7 @@ Use this file as the entry point for all coding standards.
 
 - [events.md](events.md): Event naming, registration style, and network exposure rules.
 - [citizen-functions.md](citizen-functions.md): `Citizen.` alias guidance and preferred runtime helpers.
-- [exports-and-communication.md](exports-and-communication.md): Exports vs events and client/server communication patterns.
+- [communication.md](communication.md): Event-based communication patterns and client/server flow rules.
 - [exports.md](exports.md): Export implementation standard and code-first export registration.
 - [server-validation.md](server-validation.md): Server-side validation and anti-cheat safety checks.
 - [naming-conventions.md](naming-conventions.md): Naming rules for variables, functions, events, exports, and booleans.
@@ -21,7 +21,7 @@ Use this file as the entry point for all coding standards.
 ## Suggested Read Order
 
 1. `events.md`
-2. `exports-and-communication.md`
+2. `communication.md`
 3. `exports.md`
 4. `server-validation.md`
 5. `naming-conventions.md`
