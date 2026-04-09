@@ -13,6 +13,7 @@ Use this file as the entry point for all coding standards.
 - [file-naming.md](file-naming.md): File naming rules and structure patterns.
 - [documentation.md](documentation.md): Function documentation with `---@param` and `---@return` annotations.
 - [fxmanifest.md](fxmanifest.md): Required `fxmanifest.lua` structure and conventions.
+- [libs.md](libs.md): Reusable libs folder structure and version checker/versioning files.
 - [ox-lib.md](ox-lib.md): Standard patterns for using `ox_lib`.
 - [framework/main.md](framework/main.md): Shared framework bridge and separated ESX/QBCore/Qbox standards.
 - [framework/implementation.md](framework/implementation.md): Step-by-step framework implementation guide.
@@ -28,8 +29,9 @@ Use this file as the entry point for all coding standards.
 6. `file-naming.md`
 7. `documentation.md`
 8. `fxmanifest.md`
-9. `framework/main.md`
-10. `framework/implementation.md`
-11. `ox-lib.md`
-12. `citizen-functions.md`
-13. `deprecated-patterns.md`
+9. `libs.md`
+10. `framework/main.md`
+11. `framework/implementation.md`
+12. `ox-lib.md`
+13. `citizen-functions.md`
+14. `deprecated-patterns.md`

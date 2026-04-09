@@ -7,12 +7,15 @@ Every resource must use `fxmanifest.lua` and keep it minimal, explicit, and orga
 - Use `fxmanifest.lua` (never `__resource.lua`).
 - Keep metadata at the top (`fx_version`, `game`).
 - Do not add `lua54 'yes'`; Lua 5.4 is default since October 2025.
+- Add `repository 'https://github.com/<owner>/<repo>'` so tooling can reference source and updates.
 - Group script lists by side (`shared_scripts`, `client_scripts`, `server_scripts`).
 - Use recursive globs for folders: `**/*.lua`.
 - Keep dependency declarations explicit and limited to actual resource dependencies only.
 - Load shared framework bridge files through `shared_scripts`.
 - Prefer code-defined exports in `*exports.lua` files; do not declare exports in `fxmanifest.lua` for new resources.
 - Include locale files in `files` when using `ox_lib` locale.
+- Load reusable libs from `libs/server` and `libs/client` when present.
+- Load `libs/server/versionchecker.lua` early in `server_scripts`.
 - Use `provide` only when you intentionally mimic/replace another resource.
 - Control load order by listing required bootstrap files before glob entries.
 
@@ -26,6 +29,7 @@ name 'my-resource'
 author 'HydraCode'
 description 'Short resource description'
 version '1.0.0'
+repository 'https://github.com/hydra-code/my-resource'
 
 shared_scripts {
   '@ox_lib/init.lua',
@@ -36,10 +40,13 @@ shared_scripts {
 
 client_scripts {
   'client/editable.lua',
+  'libs/client/**/*.lua',
   'client/**/*.lua'
 }
 
 server_scripts {
+  'libs/server/versionchecker.lua',
+  'libs/server/**/*.lua',
   'server/editable.lua',
   'server/**/*.lua'
 }
