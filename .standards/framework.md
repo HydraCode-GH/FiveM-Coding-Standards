@@ -26,7 +26,6 @@ Add to `shared_scripts` in `fxmanifest.lua` **before** all other shared scripts:
 shared_scripts {
   '@ox_lib/init.lua',
   'libs/shared/framework.lua',
-  'shared/**/*.lua',
 }
 ```
 

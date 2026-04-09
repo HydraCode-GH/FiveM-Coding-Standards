@@ -11,7 +11,7 @@ Every resource must use `fxmanifest.lua` and keep it minimal, explicit, and orga
 - Group script lists by side (`shared_scripts`, `client_scripts`, `server_scripts`).
 - Use recursive globs for folders: `**/*.lua`.
 - Keep dependency declarations explicit and limited to actual resource dependencies only.
-- Load shared framework bridge files through `shared_scripts`.
+- Load framework bridge and debug lib from `libs/shared/` through `shared_scripts`.
 - Prefer code-defined exports in `*exports.lua` files; do not declare exports in `fxmanifest.lua` for new resources.
 - Include locale files in `files` when using `ox_lib` locale.
 - Load reusable libs from `libs/server` and `libs/client` when present.
@@ -40,10 +40,8 @@ files {
 
 shared_scripts {
   '@ox_lib/init.lua',
-  'libs/shared/debug.lua',       -- exposes Debug global
-  'libs/shared/framework.lua',  -- exposes Framework global
-  'shared/editable.lua',
-  'shared/**/*.lua'
+  'libs/shared/debug.lua',      -- exposes Debug global
+  'libs/shared/framework.lua', -- exposes Framework global
 }
 
 client_scripts {
@@ -53,7 +51,7 @@ client_scripts {
 
 server_scripts {
   'libs/server/versionchecker.lua',
-  'libs/server/sql.lua',         -- exposes SQL global
+  'libs/server/sql.lua',        -- exposes SQL global
   'libs/server/**/*.lua',
   'server/editable.lua',
   'server/**/*.lua'
@@ -72,6 +70,6 @@ provide 'my-resource-compat'
 - Avoid duplicate entries across script blocks.
 - Keep wildcard usage predictable.
 - Add new files in side-correct blocks only.
-- Keep shared framework detection loaded before modules that use `Framework`.
+- Load `libs/shared/debug.lua` and `libs/shared/framework.lua` as the first shared_scripts entries so their globals are available to all scripts below them.
 - If load order matters, use filename ordering (for example `00-init.lua`, `10-core.lua`) and keep explicit bootstrap entries above globs.
 - Only list real resource names in `dependencies` (for example `ox_lib`); do not include files, exports, convars, or metadata values.
