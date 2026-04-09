@@ -4,6 +4,10 @@ Use this file as the entry point for all coding standards.
 
 ## Files
 
+- [readme.md](readme.md): How to write a resource README.
+- [require.md](require.md): `require`, `lib.load`, and `lib.loadJson` — when and how to use each.
+- [sql.md](sql.md): OxMySQL wrapper usage and function reference.
+- [debug.md](debug.md): Structured print/debug system (`libs/shared/debug.lua`).
 - [events.md](events.md): Event naming, registration style, and network exposure rules.
 - [citizen-functions.md](citizen-functions.md): `Citizen.` alias guidance and preferred runtime helpers.
 - [communication.md](communication.md): Event-based communication patterns and client/server flow rules.
@@ -21,17 +25,21 @@ Use this file as the entry point for all coding standards.
 
 ## Suggested Read Order
 
-1. `events.md`
-2. `communication.md`
-3. `exports.md`
-4. `server-validation.md`
-5. `naming-conventions.md`
-6. `file-naming.md`
-7. `documentation.md`
-8. `fxmanifest.md`
-9. `libs.md`
-10. `framework/main.md`
-11. `framework/implementation.md`
-12. `ox-lib.md`
-13. `citizen-functions.md`
-14. `deprecated-patterns.md`
+1. `readme.md`
+2. `naming-conventions.md`
+3. `file-naming.md`
+4. `fxmanifest.md`
+5. `require.md`
+6. `debug.md`
+7. `sql.md`
+8. `events.md`
+9. `communication.md`
+10. `exports.md`
+11. `server-validation.md`
+12. `documentation.md`
+13. `libs.md`
+14. `framework/main.md`
+15. `framework/implementation.md`
+16. `ox-lib.md`
+17. `citizen-functions.md`
+18. `deprecated-patterns.md`

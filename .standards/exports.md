@@ -41,9 +41,9 @@ Rule:
 
 ## Recommended Layout
 
-- `shared/exports.lua` for shared exports.
-- `server/exports.lua` for server-only exports.
-- `client/exports.lua` for client-only exports when needed.
+- `shared/sh-exports.lua` for shared exports.
+- `server/sv-exports.lua` for server-only exports.
+- `client/cl-exports.lua` for client-only exports when needed.
 
 ## Server And Client Usage
 
