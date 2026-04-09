@@ -11,6 +11,7 @@ Every resource must use `fxmanifest.lua` and keep it minimal, explicit, and orga
 - Use recursive globs for folders: `**/*.lua`.
 - Keep dependency declarations explicit and limited to actual resource dependencies only.
 - Load shared framework bridge files through `shared_scripts`.
+- Prefer code-defined exports in `*exports.lua` files; do not declare exports in `fxmanifest.lua` for new resources.
 - Include locale files in `files` when using `ox_lib` locale.
 - Use `provide` only when you intentionally mimic/replace another resource.
 - Control load order by listing required bootstrap files before glob entries.
