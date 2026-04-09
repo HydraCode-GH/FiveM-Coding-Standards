@@ -6,11 +6,19 @@
 - Follow a consistent event naming scheme: `resource:context:action`.
 - Do not expose local-only events as network events unless necessary.
 - Use events for actions/state changes, not for function-like return flows.
+- Use `RegisterNetEvent` on client-side and `RegisterServerEvent` on server-side.
 
-## Example
+## Examples
+
+### server
+```lua
+RegisterServerEvent('inventory:server:addItem', function(item, amount)
+  -- handle logic
+end)
+```
 
 ```lua
-RegisterNetEvent('inventory:server:addItem', function(item, amount)
+RegisterNetEvent('inventory:client:addItem', function(item, amount)
   -- handle logic
 end)
 ```
