@@ -15,3 +15,6 @@ This repository keeps style, architecture, and safety guidelines in one place so
 ## Using In Other Repositories
 
 Copy the `.standards` folder into your project and reference `.standards/main.md` as the entry point.
+
+## License
+You may follow the [LICENSE](LICENSE) file.
