@@ -5,7 +5,8 @@ Every resource must use `fxmanifest.lua` and keep it minimal, explicit, and orga
 ## Rules
 
 - Use `fxmanifest.lua` (never `__resource.lua`).
-- Keep metadata at the top (`fx_version`, `game`, `lua54`).
+- Keep metadata at the top (`fx_version`, `game`).
+- Do not add `lua54 'yes'`; Lua 5.4 is default since October 2025.
 - Group script lists by side (`shared_scripts`, `client_scripts`, `server_scripts`).
 - Use recursive globs for folders: `**/*.lua`.
 - Keep dependency declarations explicit and limited to actual resource dependencies only.
@@ -19,7 +20,6 @@ Every resource must use `fxmanifest.lua` and keep it minimal, explicit, and orga
 ```lua
 fx_version 'cerulean'
 game 'gta5'
-lua54 'yes'
 
 name 'my-resource'
 author 'HydraCode'
@@ -62,4 +62,4 @@ provide 'my-resource-compat'
 - Add new files in side-correct blocks only.
 - Keep shared framework detection loaded before modules that use `Framework`.
 - If load order matters, use filename ordering (for example `00-init.lua`, `10-core.lua`) and keep explicit bootstrap entries above globs.
-- Do not add non-resource items to `dependencies`.
+- Only list real resource names in `dependencies` (for example `ox_lib`); do not include files, exports, convars, or metadata values.
