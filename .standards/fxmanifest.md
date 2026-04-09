@@ -31,6 +31,13 @@ description 'Short resource description'
 version '1.0.0'
 repository 'https://github.com/hydra-code/my-resource'
 
+ui_page 'html/index.html'
+
+files {
+  'html/**/*'
+  'locales/**/*.json'
+}
+
 shared_scripts {
   '@ox_lib/init.lua',
   'libs/shared/framework.lua',
@@ -49,10 +56,6 @@ server_scripts {
   'libs/server/**/*.lua',
   'server/editable.lua',
   'server/**/*.lua'
-}
-
-files {
-  'locales/**/*.json'
 }
 
 dependencies {
