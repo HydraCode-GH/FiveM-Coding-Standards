@@ -12,11 +12,10 @@ Use consistent file names so project structure is easy to scan.
 
 ## Recommended Patterns
 
-- `client-*.lua` for client-only modules.
-- `server-*.lua` for server-only modules.
-- `shared-*.lua` for shared modules.
+- `cl-*.lua` for client-only modules.
+- `sv-*.lua` for server-only modules.
+- `sh-*.lua` for shared modules.
 - `config.lua` for static config.
-- `constants.lua` for immutable constant values.
 
 ## Framework Layout
 
