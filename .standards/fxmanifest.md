@@ -40,19 +40,20 @@ files {
 
 shared_scripts {
   '@ox_lib/init.lua',
-  'libs/shared/framework.lua',
+  'libs/shared/debug.lua',       -- exposes Debug global
+  'libs/shared/framework.lua',  -- exposes Framework global
   'shared/editable.lua',
   'shared/**/*.lua'
 }
 
 client_scripts {
   'client/editable.lua',
-  'libs/client/**/*.lua',
   'client/**/*.lua'
 }
 
 server_scripts {
   'libs/server/versionchecker.lua',
+  'libs/server/sql.lua',         -- exposes SQL global
   'libs/server/**/*.lua',
   'server/editable.lua',
   'server/**/*.lua'

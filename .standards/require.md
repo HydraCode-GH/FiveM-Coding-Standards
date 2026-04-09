@@ -32,22 +32,19 @@ local module = require 'path.to.file'
 
 ### Hydra Code Path Rule
 
-Always use the full module path from resource root.
+Use full module paths relative to the resource root.
 
 ```lua
--- bad (ambiguous in this standard)
-local Framework = require 'framework'
+-- bad (ambiguous)
+local events = require 'events'
 
 -- good
-local Framework = require 'libs.shared.framework'
-
--- good
-local Debug = require 'libs.shared.debug'
+local events = require 'data.events'
 ```
 
-For shared libraries, start paths with `libs.shared.`.
-For server libraries, start paths with `libs.server.`.
-For client libraries, start paths with `libs.client.`.
+> Hydra Code libs (`libs/shared/debug.lua`, `libs/server/sql.lua`, `libs/shared/framework.lua`)
+> are **not** loaded via `require`. They are listed in `fxmanifest.lua` and expose globals.
+> See their respective standards docs for the correct fxmanifest entries.
 
 ### Cross-resource require
 
@@ -84,7 +81,6 @@ return {
 ```lua
 -- myresource/server.lua
 local events = require 'data.events'
-local Framework = require 'libs.shared.framework'
 print(events.disconnect) -- onPlayerDropped
 ```
 
@@ -210,11 +206,8 @@ resources/
       config.lua
   myresource/
     server.lua
-    libs/
-      shared/
-        debug.lua       ← require 'libs.shared.debug'
-      server/
-        sql.lua         ← require 'libs.server.sql'
+    data/
+      items.lua         ← require 'data.items'
 ```
 
 ---
@@ -225,23 +218,12 @@ resources/
 - **Do not side-effect at module load time.** No `CreateThread`, no network calls, no `RegisterNetEvent` inside a module file. Modules define data and functions — the calling script controls execution.
 - **Client modules must be in `files {}`.** Forgetting this causes a silent nil require on the client.
 - **Never `require` inside a loop or hot path.** The first call incurs file I/O; subsequent calls are cached but the lookup still has overhead. Assign the result to a local at the top of the file.
-- **Use full module paths for libs.** Do not use legacy shorthand like `shared.framework`; use `libs.shared.framework`.
+- **Do not `require` Hydra Code lib files.** `libs/shared/debug.lua`, `libs/server/sql.lua`, and `libs/shared/framework.lua` are loaded via `fxmanifest.lua` as regular scripts and expose globals. Using `require` on them will double-execute them.
 
 ```lua
--- bad
-CreateThread(function()
-    while true do
-        local SQL = require 'libs.server.sql'  -- don't do this
-        ...
-    end
-end)
+-- bad: libs are not require-able modules
+local Debug = require 'libs.shared.debug'
 
--- good
-local SQL = require 'libs.server.sql'
-
-CreateThread(function()
-    while true do
-        ...
-    end
-end)
+-- good: listed in fxmanifest, Debug global is available automatically
+Debug.info('started')
 ```

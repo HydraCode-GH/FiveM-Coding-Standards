@@ -6,12 +6,7 @@ Standard for database access in Hydra Code resources. All database calls go thro
 
 ## Setup
 
-```lua
--- server/main.lua (or any server file)
-local SQL = require 'libs.server.sql'
-```
-
-The `libs/server/sql.lua` file must be loaded before any script that requires it. In `fxmanifest.lua`:
+Add to `server_scripts` in `fxmanifest.lua` **before** other server scripts:
 
 ```lua
 server_scripts {
@@ -22,6 +17,8 @@ server_scripts {
   'server/**/*.lua',
 }
 ```
+
+This exposes the global `SQL` table to every server script in the resource. No `require` needed.
 
 ---
 

@@ -15,29 +15,26 @@ This keeps feature code framework-agnostic and avoids framework logic spread acr
 ```text
 libs/
   shared/
-    framework.lua
-    framework/
-      server/
-        esx.lua
-        qbcore.lua
-        qbox.lua
-        standalone.lua
-      client/
-        esx.lua
-        qbcore.lua
-        qbox.lua
-        standalone.lua
+    framework.lua   ← single file, all adapters inlined
 ```
+
+## Loading
+
+Add to `shared_scripts` in `fxmanifest.lua` **before** all other shared scripts:
+
+```lua
+shared_scripts {
+  '@ox_lib/init.lua',
+  'libs/shared/framework.lua',
+  'shared/**/*.lua',
+}
+```
+
+This exposes the global `Framework` table to every shared, server, and client script. No `require` needed.
 
 ## Usage
 
-Load at top of script:
-
-```lua
-local Framework = require 'libs.shared.framework'
-```
-
-Then use unified wrappers only:
+Use unified wrappers directly:
 
 ```lua
 -- server
@@ -85,7 +82,7 @@ Resolved type is stored in `Framework.Type`.
 
 ## Rules
 
-- Keep framework-specific code in `libs/shared/framework/server/*.lua` and `libs/shared/framework/client/*.lua` only.
+- All framework-specific code lives inside `libs/shared/framework.lua` only — do not split across sub-files.
 - Keep wrapper names stable even if internal framework code changes.
 - Validate all client input server-side, regardless of framework.
 - Log framework type once on startup in debug mode if needed.
@@ -93,20 +90,6 @@ Resolved type is stored in `Framework.Type`.
 
 ## Migration Notes
 
-Legacy path pattern:
+Old pattern: instantiated via `require`, returned a value.
 
-- shared-root framework module path
-
-New path:
-
-- `libs/shared/framework.lua`
-
-Update all imports:
-
-```lua
--- old
--- local Framework = require '<legacy-shared-root-path>'
-
--- new
-local Framework = require 'libs.shared.framework'
-```
+New pattern: added to `shared_scripts` in `fxmanifest.lua`. The `Framework` global is available in every script that runs after `libs/shared/framework.lua` is loaded. Remove any `require` calls.

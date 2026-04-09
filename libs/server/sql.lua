@@ -1,8 +1,10 @@
 --- Hydra Code SQL Library
 --- Server-side OxMySQL wrapper.
 ---
---- Load via require:
----   local SQL = require 'libs.server.sql'
+--- Add to server_scripts in fxmanifest.lua:
+---   'libs/server/sql.lua'
+---
+--- Exposes global: SQL
 ---
 --- All functions are promise-based (await).
 --- Use SQL.query for SELECT, SQL.single for single-row SELECT,
@@ -10,7 +12,7 @@
 --- SQL.update for UPDATE/DELETE, SQL.transaction for multi-query batches.
 
 ---@class SQLLib
-local SQL = {}
+SQL = {}
 
 --- Execute a SELECT query. Returns all matching rows.
 --- Use when you expect zero or more rows.
@@ -87,5 +89,3 @@ end
 function SQL.prepare(query, params)
     return MySQL.prepare.await(query, params or {})
 end
-
-return SQL

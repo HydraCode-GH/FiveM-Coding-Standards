@@ -1,17 +1,18 @@
 --- Hydra Code Debug Library
---- Shared module for structured, toggleable log output.
+--- Add to shared_scripts in fxmanifest.lua:
+---   'libs/shared/debug.lua'
 ---
---- Load via require:
----   local Debug = require 'libs.shared.debug'
+--- Exposes global: Debug
 ---
 --- Enable debug output per-resource via convar:
 ---   set debug_<resourcename> 1
+--- Or set Config.Debug = true in shared/editable.lua
 ---
 --- Usage:
 ---   Debug.info('Player %s connected', player_name)
 ---   Debug.warn('Missing config key: %s', key)
 ---   Debug.error('Failed to load data: %s', err)
----   Debug.debug('Raw response: %s', json.encode(data))  -- only prints when debug enabled
+---   Debug.debug('Raw response: %s', json.encode(data))
 
 local RESOURCE_NAME = GetCurrentResourceName()
 local ORG_NAME = 'Hydra Code'
@@ -24,7 +25,7 @@ local COLOR_DEBUG = '^6'
 local COLOR_SENSITIVE = '^9'
 
 ---@class DebugLib
-local Debug = {}
+Debug = {}
 
 local function toBoolean(value)
     if type(value) == 'boolean' then return value end
@@ -184,10 +185,8 @@ function Debug.sensitive(message, ...)
 end
 
 --- Re-evaluate toggle values at runtime.
---- Useful if Config.Debug is loaded after this module.
+--- Call this after Config is populated if debug.lua loads first.
 function Debug.refresh()
     Debug.enabled = resolveDebugToggle(false)
     Debug.sensitiveEnabled = resolveSensitiveToggle(Debug.enabled)
 end
-
-return Debug

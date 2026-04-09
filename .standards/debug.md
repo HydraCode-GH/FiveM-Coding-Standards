@@ -26,21 +26,17 @@ All output follows the format:
 
 ## Loading
 
-```lua
-local Debug = require 'libs.shared.debug'
-```
-
-The file must be loaded before the script that requires it. Add it to your `fxmanifest.lua` before other scripts:
+Add to `shared_scripts` in `fxmanifest.lua` **before** all other shared scripts:
 
 ```lua
 shared_scripts {
+  '@ox_lib/init.lua',
   'libs/shared/debug.lua',
   'shared/**/*.lua',
-  ...
 }
 ```
 
-> For client scripts that need runtime `require`, the file must also appear in the `files {}` block.
+This exposes the global `Debug` table to every shared, server, and client script in the resource. No `require` needed.
 
 ---
 
@@ -163,12 +159,10 @@ Nothing is printed unless sensitive debug is enabled by `Config.Debug.sensitive`
 
 Recomputes `Debug.enabled` and `Debug.sensitiveEnabled` from Config/convars.
 
-Use if your `Config` table is populated after requiring debug:
+Call after your `Config` table is populated if it loads after `libs/shared/debug.lua`:
 
 ```lua
-local Debug = require 'libs.shared.debug'
-
--- Config loads later...
+-- in shared/editable.lua or shared/config.lua
 Debug.refresh()
 ```
 
@@ -179,8 +173,6 @@ Debug.refresh()
 At the top of every server or client file that needs logging:
 
 ```lua
-local Debug = require 'libs.shared.debug'
-
 -- Always prints
 Debug.info('Resource started')
 
