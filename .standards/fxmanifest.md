@@ -29,7 +29,7 @@ name 'my-resource'
 author 'HydraCode'
 description 'Short resource description'
 version '1.0.0'
-repository 'https://github.com/hydra-code/my-resource'
+repository 'https://github.com/HydraCode-GH/my-resource'
 
 ui_page 'html/index.html'
 
