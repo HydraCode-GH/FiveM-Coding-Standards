@@ -16,6 +16,71 @@ Use `ox_lib` as the default utility and UI helper library when suitable.
 - Zone and point helpers
 - Locale helpers
 
+## Locale Standards
+
+Use `ox_lib` locale for all user-facing strings.
+
+### Setup
+
+- Set preferred language in server config:
+
+```cfg
+setr ox:locale en
+```
+
+- Add locale files using ISO language code under `locales/`.
+- Ensure `fxmanifest.lua` includes locale files:
+
+```lua
+files {
+  'locales/*.json'
+}
+```
+
+- Initialize locale once in your resource:
+
+```lua
+lib.locale()
+```
+
+### Locale File Example
+
+```json
+{
+  "grand_theft_auto": "grand theft auto",
+  "male": "male",
+  "female": "female",
+  "suspect_sex": "suspect is %s"
+}
+```
+
+### Usage
+
+```lua
+lib.locale()
+
+print(locale('grand_theft_auto'))
+print(locale('suspect_sex', locale('male')))
+```
+
+### Phrases
+
+```json
+{
+  "hello": "hello %s",
+  "my_name_is": "my name is %s",
+  "hello_my_name_is": "${hello}! ${my_name_is}."
+}
+```
+
+```lua
+print(locale('hello_my_name_is', 'doka', 'linden'))
+```
+
+### Cross-Resource Locale Access
+
+Use `lib.getLocale(resource, key)` when you need a locale string from another resource.
+
 ## Examples
 
 ```lua
