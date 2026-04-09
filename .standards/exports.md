@@ -8,6 +8,8 @@ Use exports to expose stable function-like APIs between resources.
 - Keep export names stable and descriptive.
 - Define exports in code (recommended), not in `fxmanifest.lua`.
 - Keep export registration in a dedicated file, for example `shared/exports.lua`.
+- Exports can be registered on both server and client.
+- Use exports from the same side context (server->server, client->client).
 
 ## Why Code-Based Exports
 
@@ -27,6 +29,12 @@ Use exports to expose stable function-like APIs between resources.
 - `server/exports.lua` for server-only exports.
 - `client/exports.lua` for client-only exports when needed.
 
+## Server And Client Usage
+
+- Server scripts can call exports from other server-side resources.
+- Client scripts can call exports from other client-side resources.
+- Keep side-specific APIs clearly named and documented.
+
 ## Provider Example
 
 ```lua
@@ -45,6 +53,22 @@ local balance = exports.bank:GetBalance(playerId)
 if balance <= 0 then
     return
 end
+```
+
+## Dot Vs Colon
+
+- Use `:` when calling an exported function.
+- Use `.` when reading a value/field from a returned table or object.
+
+Examples:
+
+```lua
+-- Function export call
+local balance = exports.bank:GetBalance(playerId)
+
+-- Export returns a table/object
+local profile = exports.identity:GetProfile(playerId)
+local first_name = profile.first_name -- field access uses .
 ```
 
 ## Naming
