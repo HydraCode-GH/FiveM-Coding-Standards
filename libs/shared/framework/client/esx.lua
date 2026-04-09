@@ -1,6 +1,43 @@
+local ESX = exports['es_extended']:getSharedObject()
+
+Framework.Client.getPlayerData = function()
+    return ESX.GetPlayerData()
+end
+
+Framework.Client.getJob = function()
+    local data = Framework.Client.getPlayerData()
+    return data and data.job and data.job.name or nil
+end
+
+Framework.Client.getJobGrade = function()
+    local data = Framework.Client.getPlayerData()
+    return data and data.job and data.job.grade or 0
+end
+
+Framework.Client.hasJob = function(job_name, min_grade)
+    if Framework.Client.getJob() ~= job_name then
+        return false
+    end
+
+    if min_grade then
+        return Framework.Client.getJobGrade() >= min_grade
+    end
+
+    return true
+end
+
+Framework.Client.notify = function(message, notify_type)
+    if lib and lib.notify then
+        lib.notify({ title = message, type = notify_type or 'inform' })
+    else
+        ESX.ShowNotification(message)
+    end
+end
+
+return true
 --- ESX Client Bridge
 --- Populates Framework.Client with ESX-specific wrappers.
---- Required by shared/framework/init.lua on the client when ESX is detected.
+--- Required by libs/shared/framework.lua on the client when ESX is detected.
 
 local ESX = nil
 

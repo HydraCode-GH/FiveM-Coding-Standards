@@ -1,6 +1,50 @@
+local ESX = exports['es_extended']:getSharedObject()
+
+Framework.Server.getPlayer = function(source)
+    return ESX.GetPlayerFromId(source)
+end
+
+Framework.Server.getIdentifier = function(source)
+    local player = Framework.Server.getPlayer(source)
+    return player and player.identifier or nil
+end
+
+Framework.Server.getJob = function(source)
+    local player = Framework.Server.getPlayer(source)
+    return player and player.job and player.job.name or nil
+end
+
+Framework.Server.getJobGrade = function(source)
+    local player = Framework.Server.getPlayer(source)
+    return player and player.job and player.job.grade or 0
+end
+
+Framework.Server.getMoney = function(source, account)
+    local player = Framework.Server.getPlayer(source)
+    if not player then return 0 end
+
+    local wallet = player.getAccount(account or 'money')
+    return wallet and wallet.money or 0
+end
+
+Framework.Server.addMoney = function(source, account, amount)
+    local player = Framework.Server.getPlayer(source)
+    if not player then return end
+
+    player.addAccountMoney(account or 'money', amount)
+end
+
+Framework.Server.removeMoney = function(source, account, amount)
+    local player = Framework.Server.getPlayer(source)
+    if not player then return end
+
+    player.removeAccountMoney(account or 'money', amount)
+end
+
+return true
 --- ESX Server Bridge
 --- Populates Framework.Server with ESX-specific wrappers.
---- Required by shared/framework/init.lua on the server when ESX is detected.
+--- Required by libs/shared/framework.lua on the server when ESX is detected.
 
 local ESX = nil
 

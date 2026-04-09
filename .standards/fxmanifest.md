@@ -33,7 +33,7 @@ repository 'https://github.com/hydra-code/my-resource'
 
 shared_scripts {
   '@ox_lib/init.lua',
-  'shared/framework.lua',
+  'libs/shared/framework.lua',
   'shared/editable.lua',
   'shared/**/*.lua'
 }

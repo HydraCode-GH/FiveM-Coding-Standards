@@ -19,13 +19,13 @@ Use consistent file names so project structure is easy to scan.
 
 ## Framework Layout
 
-- Keep framework bridge files under `shared/`.
+- Keep framework bridge files under `libs/shared/`.
 - Recommended names:
-	- `shared/framework.lua`
+	- `libs/shared/framework.lua`
 	- `shared/editable.lua`
 	- `server/editable.lua`
 	- `client/editable.lua`
-- Keep framework-specific notes/docs separated under `.standards/framework/`.
+- Keep framework rules in one file: `.standards/framework.md`.
 
 ## Examples
 
@@ -33,5 +33,5 @@ Use consistent file names so project structure is easy to scan.
 - `server-paychecks.lua`
 - `shared-permissions.lua`
 - `feature-garage.lua`
-- `shared/framework.lua`
+- `libs/shared/framework.lua`
 - `server/editable.lua`

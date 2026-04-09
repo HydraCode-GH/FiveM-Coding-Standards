@@ -19,8 +19,7 @@ Use this file as the entry point for all coding standards.
 - [fxmanifest.md](fxmanifest.md): Required `fxmanifest.lua` structure and conventions.
 - [libs.md](libs.md): Reusable libs folder structure and version checker/versioning files.
 - [ox-lib.md](ox-lib.md): Standard patterns for using `ox_lib`.
-- [framework/main.md](framework/main.md): Shared framework bridge and separated ESX/QBCore/Qbox standards.
-- [framework/implementation.md](framework/implementation.md): Step-by-step framework implementation guide.
+- [framework.md](framework.md): Framework bridge standard using `libs/shared/framework.lua`.
 - [deprecated-patterns.md](deprecated-patterns.md): Legacy patterns to avoid and modern replacements.
 
 ## Suggested Read Order
@@ -38,8 +37,7 @@ Use this file as the entry point for all coding standards.
 11. `server-validation.md`
 12. `documentation.md`
 13. `libs.md`
-14. `framework/main.md`
-15. `framework/implementation.md`
-16. `ox-lib.md`
-17. `citizen-functions.md`
-18. `deprecated-patterns.md`
+14. `framework.md`
+15. `ox-lib.md`
+16. `citizen-functions.md`
+17. `deprecated-patterns.md`
