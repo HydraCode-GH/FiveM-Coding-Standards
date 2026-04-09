@@ -32,7 +32,6 @@ Add to `shared_scripts` in `fxmanifest.lua` **before** all other shared scripts:
 shared_scripts {
   '@ox_lib/init.lua',
   'libs/shared/debug.lua',
-  'shared/**/*.lua',
 }
 ```
 
@@ -162,7 +161,7 @@ Recomputes `Debug.enabled` and `Debug.sensitiveEnabled` from Config/convars.
 Call after your `Config` table is populated if it loads after `libs/shared/debug.lua`:
 
 ```lua
--- in shared/editable.lua or shared/config.lua
+-- in server/editable.lua or client/editable.lua
 Debug.refresh()
 ```
 

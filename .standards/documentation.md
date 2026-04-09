@@ -31,5 +31,5 @@ end
 ## Notes
 
 - Use meaningful parameter names.
-- If a function can return `nil`, document it explicitly.
+- If a function can return `nil`, you dont need to document it explicitly.
 - Keep comments in sync with behavior when logic changes.

@@ -26,7 +26,7 @@ Short one-line description of what the resource does.
 
 - Players can do X
 - Admins can manage Y
-- Configurable via `shared/editable.lua`
+- Configurable via `server/editable.lua` and `client/editable.lua`
 ```
 
 Use a bullet list. Focus on what it does, not how it works.
@@ -55,7 +55,7 @@ List every resource that must exist for this resource to work. Link to GitHub wh
 1. Download or clone the resource into your `resources/` folder.
 2. Import `sql/install.sql` into your database.
 3. Add `ensure resource-name` to your `server.cfg`.
-4. Configure settings in `shared/editable.lua`.
+4. Configure settings in `server/editable.lua`.
 ```
 
 Numbered steps only. Each step is a single action.
@@ -67,7 +67,7 @@ Numbered steps only. Each step is a single action.
 ```md
 ## Configuration
 
-All user-facing settings are in `shared/editable.lua`.
+All user-facing settings are in `server/editable.lua` and `client/editable.lua`.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -135,11 +135,11 @@ Simple garage system with ox_lib UI and ESX player-owned vehicles.
 1. Add `hc-garage` to your `resources/` folder.
 2. Import `sql/install.sql`.
 3. Add `ensure hc-garage` to `server.cfg`.
-4. Edit `shared/editable.lua` to configure spawn points and prices.
+4. Edit `server/editable.lua` to configure spawn points and prices.
 
 ## Configuration
 
-See `shared/editable.lua`. Key settings:
+See `server/editable.lua`. Key settings:
 
 | Key | Default | Description |
 |-----|---------|-------------|
