@@ -2,7 +2,7 @@ local RESOURCE_NAME = GetCurrentResourceName()
 local MANIFEST_FILE = 'fxmanifest.lua'
 local VERSION_LUA_FILE = 'version.lua'
 local VERSION_FILE = 'version.json'
-local ORG_NAME = 'Hydra Code'
+local ORG_NAME = 'HydraCode'
 
 local COLOR_RESET = '^7'
 local COLOR_TITLE = '^5'
